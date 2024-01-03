@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*+46_lr3lxm!&uw24d($#awx8#64je+6o!uc&48&#5w!4e-n06'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'url_shortener'
+    'url_shortener',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +80,16 @@ WSGI_APPLICATION = 'url_generator.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": 'djongo',
+        "NAME": os.environ['database'],
+        "ENFORCE_SCHEMA": False,
+        "CLIENT": {     
+           "host": os.environ['mongo'],
+           "port": 27017,
+           "username": os.environ['username'],
+           "password": os.environ['password'],
+           "authMechanism": "SCRAM-SHA-1",
+        },
     }
 }
 
