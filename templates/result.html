@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>URL Generator</title>
+      <link rel="stylesheet" href="../static/main.css">
+    </head> 
+    <body>
+      <header>   
+      <h1><a style="text-decoration:none" href="{% url 'home' %}"> U R L -> url </a></h1>
+      </header>
+      <main>
+        <hr> 
+        <h2> your url: </h1>
+        <a href="https://google.com">your url</a>
+      </main>
+      <footer id="footer">
+         <a href=”twitter.com/author”>Twitter</a>
+         <a href=”facebook.com/author”>Facebook</a>
+         <a href=”instagram.com/author”>Instagram</a>
+      </footer>
+    </body>
+</html>
